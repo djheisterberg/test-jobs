@@ -1,0 +1,11 @@
+#!/bin/bash
+cluster=`hostname -s`
+cluster=${cluster:0:1}
+RCMD=/usr/bin/ssh
+if [ "$cluster" == "n" ]; then
+  RCMD=/usr/bin/rsh
+elif [ "$cluster" == "r" ]; then
+  RCMD=/usr/bin/rsh
+fi
+echo ">>> $RCMD $(date) $@"
+exec $RCMD "$@"

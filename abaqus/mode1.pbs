@@ -1,0 +1,19 @@
+#PBS -A PZS0530
+#PBS -N mode1
+#PBS -l nodes=2:ppn=12
+#PBS -l mem=36GB
+#PBS -l walltime=8:00
+#PBS -l software=abaqus+19
+
+cd $PBS_O_WORKDIR
+module load abaqus/2016
+chmod +x ./rsh
+export PATH="$PWD:$PATH"
+#
+export WORKDIR=/fs/scratch/$USER/$PBS_JOBID
+echo WORKDIR is $WORKDIR
+mkdir -p $WORKDIR
+pbsdcp *.inp $WORKDIR
+cd $WORKDIR
+#
+abaqus job=mode-1 input=mode1_linear.inp cpus=$PBS_NP interactive
