@@ -1,0 +1,14 @@
+#PBS -A PZS0530
+#PBS -N mpi-bus-error
+#PBS -l nodes=32:ppn=28
+#PBS -l walltime=5:00
+#PBS -j eo
+cd $PBS_O_WORKDIR
+chmod +x mpiBusError.sh
+#mpif90 -g -O2 -o mpiBusError mpiBusError.f
+#sleep 5
+work=/fs/scratch/$USER/mpi-bus-error
+rm -fr $work
+mkdir -p $work
+cd $work
+mpiexec $PBS_O_WORKDIR/mpiBusError.sh
