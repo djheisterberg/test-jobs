@@ -5,8 +5,8 @@
 #PBS -j eo
 cd $PBS_O_WORKDIR
 chmod +x mpiBusError.sh
-#mpif90 -g -O2 -o mpiBusError mpiBusError.f
-#sleep 5
+mpif90 -g -O2 -o mpiBusError mpiBusError.f
+sleep 5
 work=/fs/scratch/$USER/mpi-bus-error
 rm -fr $work
 mkdir -p $work
